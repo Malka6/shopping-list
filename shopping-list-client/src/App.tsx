@@ -1,12 +1,12 @@
 import './App.css';
 
 import React, { useEffect } from 'react';
-
-import { ItemAdder } from './ItemAdder';
-import { Categories } from './Categories';
 import { Provider } from 'react-redux';
+
 import { store } from './store';
-import { Header } from './header/Header';
+import { ItemAdder } from './components/ItemAdder';
+import { Categories } from './components/Categories';
+import { Header } from './components/Header';
 
 export const App = (): JSX.Element => {
   useEffect( () => {
