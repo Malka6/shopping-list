@@ -6,5 +6,6 @@ export class ProductsRouter {
 
     constructor ( public router: Router, private productsController: ProductsController ) {
         router.post( '/add', productsController.addProduct );
+        router.get( '/inventory', productsController.getInventory );
     }
 }

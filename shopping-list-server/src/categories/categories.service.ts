@@ -1,12 +1,11 @@
 import { elasticClient } from "..";
 import { Category } from './categories.types';
-import { TransportResult } from '@elastic/elasticsearch'
 
 export class CategoriesService {
 
     getUniqueCategories = async (): Promise<Category[]> => {
         try {
-            const response: any = await elasticClient.search( {
+            const response: any = await elasticClient.search<Category>( {
                 index: 'products',
                 body: {
                     size: 0,
