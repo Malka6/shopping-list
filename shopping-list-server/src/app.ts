@@ -1,6 +1,8 @@
 import bodyParser from 'body-parser';
 import express from 'express'
 import http from 'http'
+import cors from 'cors';
+
 import { config } from '.';
 import { ProductsRouter } from './products/products.route';
 import { CategoriesRouter } from './categories/categories.route';
@@ -15,6 +17,7 @@ export class App {
         this.expressApp = express()
         this.server = new http.Server( this.expressApp )
         this.expressApp.use( bodyParser.json() )
+        this.expressApp.use( cors() );
         this.registerApiRoutes()
         this.startServer()
     }
