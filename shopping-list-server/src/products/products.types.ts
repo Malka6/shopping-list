@@ -5,7 +5,7 @@ export interface Product {
 
 export interface ProductInventory { name: string; count: number };
 
-export interface Inventory { [ category: string ]: { name: string; count: number }[] };
+export interface Inventory { [ category: string ]: ProductInventory[] };
 
 export interface CategoryAggregation {
     doc_count: number;
