@@ -31,7 +31,7 @@ export const Header = () => {
         getStoreDetails();
     }, [] )
 
-    return <header className="App-header">
+    return <header className="app-header">
         <p> רשימת קניות</p>
         <p className='products-counter'>סה"כ: { productsCounter } מוצרים בחנות</p>
     </header>

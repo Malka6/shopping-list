@@ -18,7 +18,7 @@ export const App = (): JSX.Element => {
       <Provider store={ store }>
         <Header />
         <ItemAdder />
-        <p>------------------------------------------</p>
+        <div className='devider' />
         <p>יש לאסוף מוצרים אלו במחלקות המתאימות</p>
         <Categories />
       </Provider>
