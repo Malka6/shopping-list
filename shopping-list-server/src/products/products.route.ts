@@ -1,6 +1,10 @@
-import express from 'express';
-import { addProduct } from './products.controller';
+import { Router } from 'express';
+import { ProductsController } from './products.controller';
 
-export const productRouter = express.Router();
+export class ProductsRouter {
+    public path: string = "products";
 
-productRouter.post('/add-product', addProduct);
+    constructor ( public router: Router, private productsController: ProductsController ) {
+        router.post( '/add', productsController.addProduct );
+    }
+}
