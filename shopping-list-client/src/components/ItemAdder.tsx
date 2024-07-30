@@ -1,8 +1,13 @@
+import './ItemAdder.css';
+
 import React, { useState } from 'react';
 import { Button, Input, Select } from 'antd';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 import { RootState } from '../store';
+import { CONSTS } from '../consts';
+import { Product } from '../types';
 
 const { Option } = Select;
 
@@ -20,23 +25,32 @@ export const ItemAdder: React.FC = () => {
         setSelectedOption( value );
     };
 
+    const submit = async () => {
+        if ( !selectedOption ) {
+            console.log( 'No category selected' );
+        } else {
+            try {
+                const newProduct: Product = { name: inputValue, category: selectedOption }
+                const { data } = await axios.post( `${ CONSTS.api.baseUrl }/${ CONSTS.api.addProductRoute }`, newProduct );
+                if ( data.id ) console.log( 'Product added successfully.' );
+                else console.log( 'Failed to add a new product.' );
+
+                setInputValue( '' );
+            } catch ( error ) {
+                console.log( '[ERR]: Failed to add a new product with error:', error )
+            }
+        }
+    }
+
     return (
-        <div style={ { display: 'flex', gap: '10px', padding: '1rem', justifyContent: 'center' } }>
-            <Input
-                value={ inputValue }
-                onChange={ handleInputChange }
-                placeholder="הכנס מוצר חדש"
-                style={ { width: '300px' } }
-            />
-            <Select
-                value={ selectedOption }
-                onChange={ handleSelectChange }
-                placeholder="בחר קטגוריה"
-                style={ { width: '300px' } }
-            >
-                { categories.map( ( category ) => <Option value={ category.key }>{ category.key }</Option> ) }
+        <div className='item-adder'>
+            <Input value={ inputValue } onChange={ handleInputChange } placeholder="הכנס מוצר חדש" />
+            <Select value={ selectedOption } onChange={ handleSelectChange } placeholder="בחר קטגוריה" >
+                {
+                    categories.map( ( category ) => <Option value={ category.key }>{ category.key }</Option> )
+                }
             </Select>
-            <Button>הוסף</Button>
+            <Button onClick={ submit }>הוסף</Button>
         </div>
     );
 };
