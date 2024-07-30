@@ -1,20 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit'
+
 import { Inventory } from '../types';
 
 interface Props {
-    inventory: Inventory
+    inventory: Inventory;
+    productsCounter: number;
 }
 
 const initialStoreInventoryState: Props = {
-    inventory: {}
+    inventory: {},
+    productsCounter: 0
 }
 
 const storeInventorySlice = createSlice( {
     name: 'storeInventory',
     initialState: initialStoreInventoryState,
     reducers: {
-        setStoreInventory: ( state: Props, action: { payload: Props } ) => {
-            state.inventory = action.payload.inventory
+        setStoreInventory: ( state: Props, action: { payload: Inventory } ) => {
+            state.inventory = action.payload
+        },
+        setProductsCounter: ( state: Props, action: { payload: number } ) => {
+            state.productsCounter = action.payload;
         },
     }
 } )
