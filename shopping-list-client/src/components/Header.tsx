@@ -26,7 +26,7 @@ export const Header = () => {
                 dispatch( categoryAction.setCategories( { categories } ) );
                 dispatch( storeInventoryAction.setProductsCounter( counter ) );
 
-                await restoreStoreInventory()
+                await restoreStoreInventory();
             } catch ( error ) {
                 console.log( "[ERR]: Failed to get categories from server with error:", error )
             }

@@ -39,6 +39,7 @@ export const ItemAdder: React.FC = () => {
                 else console.log( 'Failed to add a new product.' );
 
                 setInputValue( '' );
+                setSelectedOption( undefined );
                 await restoreStoreInventory();
             } catch ( error ) {
                 console.log( '[ERR]: Failed to add a new product with error:', error )
