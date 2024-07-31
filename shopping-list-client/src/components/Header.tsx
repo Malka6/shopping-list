@@ -7,9 +7,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState, categoryAction, storeInventoryAction } from '../store';
 import { Category } from '../types';
 import { CONSTS } from '../consts';
+import { useStoreInventory } from '../hooks';
 
 export const Header = () => {
     const dispatch = useDispatch();
+    const { restoreStoreInventory } = useStoreInventory();
 
     const productsCounter = useSelector( ( state: RootState ) => state.storeInventory.productsCounter );
 
@@ -23,6 +25,8 @@ export const Header = () => {
 
                 dispatch( categoryAction.setCategories( { categories } ) );
                 dispatch( storeInventoryAction.setProductsCounter( counter ) );
+
+                await restoreStoreInventory()
             } catch ( error ) {
                 console.log( "[ERR]: Failed to get categories from server with error:", error )
             }

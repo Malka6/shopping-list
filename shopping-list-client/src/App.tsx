@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 
 import { store } from './store';
 import { ItemAdder } from './components/ItemAdder';
-import { Categories } from './components/Categories';
+import { StoreInventory } from './components/StoreInventory';
 import { Header } from './components/Header';
 
 export const App = (): JSX.Element => {
@@ -19,8 +19,7 @@ export const App = (): JSX.Element => {
         <Header />
         <ItemAdder />
         <div className='devider' />
-        <p>יש לאסוף מוצרים אלו במחלקות המתאימות</p>
-        <Categories />
+        <StoreInventory />
       </Provider>
     </div>
   );

@@ -8,10 +8,13 @@ import axios from 'axios';
 import { RootState } from '../store';
 import { CONSTS } from '../consts';
 import { Product } from '../types';
+import { useStoreInventory } from '../hooks';
 
 const { Option } = Select;
 
 export const ItemAdder: React.FC = () => {
+    const { restoreStoreInventory } = useStoreInventory();
+
     const [ inputValue, setInputValue ] = useState<string>( '' );
     const [ selectedOption, setSelectedOption ] = useState<string | undefined>( undefined );
 
@@ -36,6 +39,7 @@ export const ItemAdder: React.FC = () => {
                 else console.log( 'Failed to add a new product.' );
 
                 setInputValue( '' );
+                await restoreStoreInventory();
             } catch ( error ) {
                 console.log( '[ERR]: Failed to add a new product with error:', error )
             }
