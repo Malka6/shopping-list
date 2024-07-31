@@ -4,15 +4,20 @@ The site provides adding products to the shopping list and displaying the produc
 
 # Dependencies:
 npm
+
 nodejs
+
 nodemon
+
 typescript
 
 # Run the project:
+
 server:
 1. cd to server directory: cd shopping-list-server/
 2. install packages: npm i
 3. run the server: npm run dev
+
 client:
 1. cd to client directory: cd shopping-list-client/
 2. install packages: npm i
