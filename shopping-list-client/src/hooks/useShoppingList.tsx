@@ -8,14 +8,14 @@ export const useShoppingList = () => {
 
     const restoreShoppingList = async () => {
         try {
-            const { data } = await axios.get( `${ CONSTS.api.baseUrl }/${ CONSTS.api.getShoppingListRoute }` );
-            if ( data.shoppingList ) {
-                dispatch( shoppingListAction.setShoppingList( data.shoppingList ) );
+            const { data } = await axios.get(`${ CONSTS.api.baseUrl }/${ CONSTS.api.getShoppingListRoute }`);
+            if (data.shoppingList) {
+                dispatch(shoppingListAction.setShoppingList(data.shoppingList));
             } else {
-                console.error( '[ERR]: Failed to get shopping list.' );
+                console.error('[ERR]: Failed to get shopping list.');
             }
-        } catch ( error ) {
-            console.error( '[ERR]: Failed to get shopping list.', error );
+        } catch (error) {
+            console.error('[ERR]: Failed to get shopping list.', error);
         }
     };
 

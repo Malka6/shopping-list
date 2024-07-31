@@ -13,30 +13,30 @@ export const Header = () => {
     const dispatch = useDispatch();
     const { restoreShoppingList } = useShoppingList();
 
-    const productsCounter = useSelector( ( state: RootState ) => state.shoppingList.productsCounter );
+    const productsCounter = useSelector((state: RootState) => state.shoppingList.productsCounter);
 
-    useEffect( () => {
+    useEffect(() => {
         const getStoreDetails = async () => {
             try {
-                const { data } = await axios.get( `${ CONSTS.api.baseUrl }/${ CONSTS.api.getAllCategoriesRoute }` );
+                const { data } = await axios.get(`${ CONSTS.api.baseUrl }/${ CONSTS.api.getAllCategoriesRoute }`);
                 const categories: Category[] = data.categories || [];
                 let counter = 0;
-                categories.forEach( ( category ) => counter += category.doc_count );
+                categories.forEach((category) => counter += category.doc_count);
 
-                dispatch( categoryAction.setCategories( { categories } ) );
-                dispatch( shoppingListAction.setProductsCounter( counter ) );
+                dispatch(categoryAction.setCategories({ categories }));
+                dispatch(shoppingListAction.setProductsCounter(counter));
 
                 await restoreShoppingList();
-            } catch ( error ) {
-                console.log( '[ERR]: Failed to get categories from server with error:', error )
+            } catch (error) {
+                console.log('[ERR]: Failed to get categories from server with error:', error)
             }
         };
 
         getStoreDetails();
-    }, [] )
+    }, [])
 
-    return <header className='app-header'>
+    return (<header className='app-header'>
         <p> רשימת קניות</p>
-        <p className='products-counter'>סה'כ: { productsCounter } מוצרים בחנות</p>
-    </header>
+        <p className='products-counter'>סה'כ: {productsCounter} מוצרים בחנות</p>
+    </header>);
 }
