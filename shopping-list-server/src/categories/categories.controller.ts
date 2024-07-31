@@ -11,7 +11,7 @@ export class CategoriesController {
                 return res.status( 500 ).json( { error: 'Failed to get categories list' } );
             }
 
-            return res.status( 200 ).json( { categories } )
+            return res.status( 200 ).json( { categories } );
         } catch ( error ) {
             console.log( error );
             return res.status( 500 ).json( { error: 'Failed to get categories list' } );

@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { ProductsController } from './products.controller';
 
 export class ProductsRouter {
-    public path: string = "products";
+    public path: string = 'products';
 
     constructor ( public router: Router, private productsController: ProductsController ) {
         router.post( '/add', productsController.addProduct );

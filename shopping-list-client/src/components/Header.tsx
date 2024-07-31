@@ -28,15 +28,15 @@ export const Header = () => {
 
                 await restoreStoreInventory();
             } catch ( error ) {
-                console.log( "[ERR]: Failed to get categories from server with error:", error )
+                console.log( '[ERR]: Failed to get categories from server with error:', error )
             }
         };
 
         getStoreDetails();
     }, [] )
 
-    return <header className="app-header">
+    return <header className='app-header'>
         <p> רשימת קניות</p>
-        <p className='products-counter'>סה"כ: { productsCounter } מוצרים בחנות</p>
+        <p className='products-counter'>סה'כ: { productsCounter } מוצרים בחנות</p>
     </header>
 }

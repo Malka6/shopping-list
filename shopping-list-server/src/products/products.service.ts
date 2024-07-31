@@ -1,5 +1,5 @@
-import { elasticClient } from "..";
-import { CategoryAggregation, CategoryBucket, Inventory, Product } from "./products.types";
+import { elasticClient } from '..';
+import { CategoryBucket, Inventory, Product } from './products.types';
 
 export class ProductsService {
 
@@ -44,11 +44,11 @@ export class ProductsService {
                 }
             } );
 
-            const aggregations: CategoryBucket[] = response.aggregations.categories.buckets || []
-            const storeInventory: Inventory = {}
+            const aggregations: CategoryBucket[] = response.aggregations.categories.buckets || [];
+            const storeInventory: Inventory = {};
             aggregations.forEach( ( category ) => {
                 storeInventory[ category.key ] = category.names.buckets.map( ( bucket ) => {
-                    return { name: bucket.key, count: bucket.doc_count }
+                    return { name: bucket.key, count: bucket.doc_count };
                 } )
             } )
             return storeInventory;
@@ -57,5 +57,4 @@ export class ProductsService {
             throw new Error( 'Could not fetch aggregated categories and names' );
         }
     };
-
 }

@@ -49,8 +49,8 @@ export const ItemAdder: React.FC = () => {
 
     return (
         <div className='item-adder'>
-            <Input value={ inputValue } onChange={ handleInputChange } placeholder="הכנס מוצר חדש" />
-            <Select value={ selectedOption } onChange={ handleSelectChange } placeholder="בחר קטגוריה" >
+            <Input value={ inputValue } onChange={ handleInputChange } placeholder='הכנס מוצר חדש' />
+            <Select value={ selectedOption } onChange={ handleSelectChange } placeholder='בחר קטגוריה' >
                 {
                     categories.map( ( category ) => <Option value={ category.key }>{ category.key }</Option> )
                 }

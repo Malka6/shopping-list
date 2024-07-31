@@ -26,7 +26,10 @@ export const elasticClient = new Client( {
     }
 } );
 
-const productsRouter = new ProductsRouter( Router(), new ProductsController( new ProductsService() ) );
-const categoriesRouter = new CategoriesRouter( Router(), new CategoriesController( new CategoriesService() ) );
+const productsController = new ProductsController( new ProductsService() );
+const categoriesController = new CategoriesController( new CategoriesService() );
 
-new App( productsRouter, categoriesRouter )
+const productsRouter = new ProductsRouter( Router(), productsController );
+const categoriesRouter = new CategoriesRouter( Router(), categoriesController );
+
+new App( productsRouter, categoriesRouter );

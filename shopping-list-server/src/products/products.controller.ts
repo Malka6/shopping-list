@@ -29,8 +29,8 @@ export class ProductsController {
         try {
             const inventory: Inventory = await this.productsService.getStoreInventory();
             if ( !inventory ) {
-                return res.status( 500 ).json( { error: 'Failed to get products inventory.' } )
-            } else return res.status( 200 ).json( { inventory } )
+                return res.status( 500 ).json( { error: 'Failed to get products inventory.' } );
+            } else return res.status( 200 ).json( { inventory } );
         } catch ( error ) {
             console.log( error );
             return res.status( 500 ).json( { error: 'Failed to get categories list' } );

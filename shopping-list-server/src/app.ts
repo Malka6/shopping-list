@@ -11,15 +11,15 @@ export class App {
     public expressApp: express.Express;
     public server: http.Server;
 
-    public prefix = "/api"
+    public prefix = '/api';
 
     constructor ( private productsRouter: ProductsRouter, private categoriesRouter: CategoriesRouter ) {
-        this.expressApp = express()
-        this.server = new http.Server( this.expressApp )
-        this.expressApp.use( bodyParser.json() )
+        this.expressApp = express();
+        this.server = new http.Server( this.expressApp );
+        this.expressApp.use( bodyParser.json() );
         this.expressApp.use( cors() );
-        this.registerApiRoutes()
-        this.startServer()
+        this.registerApiRoutes();
+        this.startServer();
     }
 
     private registerApiRoutes = () => {

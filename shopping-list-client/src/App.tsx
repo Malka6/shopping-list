@@ -14,7 +14,7 @@ export const App = (): JSX.Element => {
   }, [] );
 
   return (
-    <div className="App">
+    <div className='App'>
       <Provider store={ store }>
         <Header />
         <ItemAdder />

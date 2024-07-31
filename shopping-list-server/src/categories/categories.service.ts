@@ -1,8 +1,7 @@
-import { elasticClient } from "..";
+import { elasticClient } from '..';
 import { Category } from './categories.types';
 
 export class CategoriesService {
-
     getUniqueCategories = async (): Promise<Category[]> => {
         try {
             const response: any = await elasticClient.search<Category>( {

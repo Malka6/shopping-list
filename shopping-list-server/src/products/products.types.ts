@@ -7,27 +7,15 @@ export interface ProductInventory { name: string; count: number };
 
 export interface Inventory { [ category: string ]: ProductInventory[] };
 
-export interface CategoryAggregation {
-    doc_count: number;
-    key: string;
-    names: []
-}
-
 interface NameBucket {
-    key: string;  // The unique name value
-    doc_count: number;  // The count of documents with this name in the category
-}
-
-export interface Aggregations {
-    categories: {
-        buckets: CategoryBucket[]; // Array of CategoryBucket
-    };
+    key: string;
+    doc_count: number;
 }
 
 export interface CategoryBucket {
-    key: string;  // The unique category value
-    doc_count: number;  // The count of documents in this category
+    key: string;
+    doc_count: number;
     names: {
-        buckets: NameBucket[]; // Array of NameBucket for each name in this category
+        buckets: NameBucket[];
     };
 }
