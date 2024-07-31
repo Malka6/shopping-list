@@ -1,1 +1,1 @@
-export * from './useStoreInventory'
+export * from './useShoppingList'

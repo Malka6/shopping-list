@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import categories from './categories';
-import storeInventory from './storeInventory';
+import shoppingList from './shoppingList';
 
-export const store = configureStore( { reducer: { categories, storeInventory } } );
+export const store = configureStore( { reducer: { categories, shoppingList } } );
 
 export type RootState = ReturnType<typeof store.getState>;
 
 export * from './categories';
-export * from './storeInventory';
+export * from './shoppingList';

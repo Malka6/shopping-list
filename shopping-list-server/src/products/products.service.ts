@@ -1,5 +1,5 @@
 import { elasticClient } from '..';
-import { CategoryBucket, Inventory, Product } from './products.types';
+import { CategoryBucket, ShoppingList, Product } from './products.types';
 
 export class ProductsService {
 
@@ -19,7 +19,7 @@ export class ProductsService {
         }
     };
 
-    getStoreInventory = async (): Promise<Inventory> => {
+    getShoppingList = async (): Promise<ShoppingList> => {
         try {
             const response: any = await elasticClient.search<Product>( {
                 index: 'products',
@@ -45,13 +45,13 @@ export class ProductsService {
             } );
 
             const aggregations: CategoryBucket[] = response.aggregations.categories.buckets || [];
-            const storeInventory: Inventory = {};
+            const shoppingList: ShoppingList = {};
             aggregations.forEach( ( category ) => {
-                storeInventory[ category.key ] = category.names.buckets.map( ( bucket ) => {
+                shoppingList[ category.key ] = category.names.buckets.map( ( bucket ) => {
                     return { name: bucket.key, count: bucket.doc_count };
                 } )
             } )
-            return storeInventory;
+            return shoppingList;
         } catch ( error ) {
             console.error( 'Error fetching aggregated categories and names:', error );
             throw new Error( 'Could not fetch aggregated categories and names' );

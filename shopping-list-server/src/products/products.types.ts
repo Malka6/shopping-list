@@ -3,9 +3,9 @@ export interface Product {
     category: string;
 };
 
-export interface ProductInventory { name: string; count: number };
+export interface ProductOrder { name: string; count: number };
 
-export interface Inventory { [ category: string ]: ProductInventory[] };
+export interface ShoppingList { [ category: string ]: ProductOrder[] };
 
 interface NameBucket {
     key: string;

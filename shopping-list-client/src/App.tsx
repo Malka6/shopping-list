@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 
 import { store } from './store';
 import { ItemAdder } from './components/ItemAdder';
-import { StoreInventory } from './components/StoreInventory';
+import { ShoppingList } from './components/ShoppingList';
 import { Header } from './components/Header';
 
 export const App = (): JSX.Element => {
@@ -19,7 +19,7 @@ export const App = (): JSX.Element => {
         <Header />
         <ItemAdder />
         <div className='devider' />
-        <StoreInventory />
+        <ShoppingList />
       </Provider>
     </div>
   );

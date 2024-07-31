@@ -4,16 +4,16 @@ import { useEffect } from 'react';
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
 
-import { RootState, categoryAction, storeInventoryAction } from '../store';
+import { RootState, categoryAction, shoppingListAction } from '../store';
 import { Category } from '../types';
 import { CONSTS } from '../consts';
-import { useStoreInventory } from '../hooks';
+import { useShoppingList } from '../hooks';
 
 export const Header = () => {
     const dispatch = useDispatch();
-    const { restoreStoreInventory } = useStoreInventory();
+    const { restoreShoppingList } = useShoppingList();
 
-    const productsCounter = useSelector( ( state: RootState ) => state.storeInventory.productsCounter );
+    const productsCounter = useSelector( ( state: RootState ) => state.shoppingList.productsCounter );
 
     useEffect( () => {
         const getStoreDetails = async () => {
@@ -24,9 +24,9 @@ export const Header = () => {
                 categories.forEach( ( category ) => counter += category.doc_count );
 
                 dispatch( categoryAction.setCategories( { categories } ) );
-                dispatch( storeInventoryAction.setProductsCounter( counter ) );
+                dispatch( shoppingListAction.setProductsCounter( counter ) );
 
-                await restoreStoreInventory();
+                await restoreShoppingList();
             } catch ( error ) {
                 console.log( '[ERR]: Failed to get categories from server with error:', error )
             }
