@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { ShoppingList } from '../types';
 
@@ -12,18 +12,18 @@ const initialShoppingListState: Props = {
     productsCounter: 0
 }
 
-const shoppingListSlice = createSlice( {
+const shoppingListSlice = createSlice({
     name: 'shoppingList',
     initialState: initialShoppingListState,
     reducers: {
-        setShoppingList: ( state: Props, action: { payload: ShoppingList } ) => {
-            state.shoppingList = action.payload
+        setShoppingList: (state: Props, action: PayloadAction<ShoppingList>) => {
+            state.shoppingList = { ...action.payload }
         },
-        setProductsCounter: ( state: Props, action: { payload: number } ) => {
+        setProductsCounter: (state: Props, action: PayloadAction<number>) => {
             state.productsCounter = action.payload;
         },
     }
-} )
+})
 
 export const shoppingListAction = shoppingListSlice.actions;
 export default shoppingListSlice.reducer;
