@@ -30,6 +30,6 @@ export const Header = () => {
 
     return (<header className='app-header'>
         <p> רשימת קניות</p>
-        <p className='products-counter'>סה'כ: {productsCounter} מוצרים בחנות</p>
+        <p className='products-counter'>סה"כ: {productsCounter} מוצרים בחנות</p>
     </header>);
 }

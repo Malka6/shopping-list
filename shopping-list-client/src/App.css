@@ -8,3 +8,7 @@
   border-width: 0.5px;
   margin: 1rem 3rem;
 }
+
+p {
+  direction: rtl;
+}
