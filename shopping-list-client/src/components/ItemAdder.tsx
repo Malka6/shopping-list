@@ -2,18 +2,15 @@ import './ItemAdder.css';
 
 import React, { useState } from 'react';
 import { Button, Input, Select } from 'antd';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { RootState } from '../store';
-import { CONSTS } from '../consts';
+import { RootState, shoppingListAction } from '../store';
 import { Product } from '../types';
-import { useShoppingList } from '../hooks';
 
 const { Option } = Select;
 
 export const ItemAdder: React.FC = () => {
-    const { restoreShoppingList } = useShoppingList();
+    const dispatch = useDispatch();
 
     const [ inputValue, setInputValue ] = useState<string>('');
     const [ selectedOption, setSelectedOption ] = useState<string | undefined>(undefined);
@@ -33,16 +30,11 @@ export const ItemAdder: React.FC = () => {
             console.log('No category selected');
         } else {
             try {
-                const newProduct: Product = { name: inputValue, category: selectedOption }
-                const { data } = await axios.post(`${ CONSTS.api.baseUrl }/${ CONSTS.api.addProductRoute }`, newProduct);
-                if (data.id) console.log('Product added successfully.');
-                else console.log('Failed to add a new product.');
+                const newProduct: Product = { name: inputValue, category: selectedOption };
+                dispatch(shoppingListAction.addProduct(newProduct));
 
                 setInputValue('');
                 setSelectedOption(undefined);
-                setTimeout(async () => {
-                    await restoreShoppingList();
-                }, 500);
             } catch (error) {
                 console.log('[ERR]: Failed to add a new product with error:', error)
             }
