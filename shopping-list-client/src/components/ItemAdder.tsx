@@ -15,47 +15,50 @@ const { Option } = Select;
 export const ItemAdder: React.FC = () => {
     const { restoreShoppingList } = useShoppingList();
 
-    const [ inputValue, setInputValue ] = useState<string>( '' );
-    const [ selectedOption, setSelectedOption ] = useState<string | undefined>( undefined );
+    const [ inputValue, setInputValue ] = useState<string>('');
+    const [ selectedOption, setSelectedOption ] = useState<string | undefined>(undefined);
 
-    const categories = useSelector( ( state: RootState ) => state.categories.categories );
+    const categories = useSelector((state: RootState) => state.categories.categories);
 
-    const handleInputChange = ( e: React.ChangeEvent<HTMLInputElement> ) => {
-        setInputValue( e.target.value );
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputValue(e.target.value);
     };
 
-    const handleSelectChange = ( value: string ) => {
-        setSelectedOption( value );
+    const handleSelectChange = (value: string) => {
+        setSelectedOption(value);
     };
 
     const submit = async () => {
-        if ( !selectedOption ) {
-            console.log( 'No category selected' );
+        if (!selectedOption) {
+            console.log('No category selected');
         } else {
             try {
                 const newProduct: Product = { name: inputValue, category: selectedOption }
-                const { data } = await axios.post( `${ CONSTS.api.baseUrl }/${ CONSTS.api.addProductRoute }`, newProduct );
-                if ( data.id ) console.log( 'Product added successfully.' );
-                else console.log( 'Failed to add a new product.' );
+                const { data } = await axios.post(`${ CONSTS.api.baseUrl }/${ CONSTS.api.addProductRoute }`, newProduct);
+                if (data.id) console.log('Product added successfully.');
+                else console.log('Failed to add a new product.');
 
-                setInputValue( '' );
-                setSelectedOption( undefined );
-                await restoreShoppingList();
-            } catch ( error ) {
-                console.log( '[ERR]: Failed to add a new product with error:', error )
+                setInputValue('');
+                setSelectedOption(undefined);
+                setTimeout(async () => {
+                    await restoreShoppingList();
+                }, 500);
+            } catch (error) {
+                console.log('[ERR]: Failed to add a new product with error:', error)
             }
         }
     }
 
     return (
         <div className='item-adder'>
-            <Input value={ inputValue } onChange={ handleInputChange } placeholder='הכנס מוצר חדש' />
-            <Select value={ selectedOption } onChange={ handleSelectChange } placeholder='בחר קטגוריה' >
+            <Input value={inputValue} onChange={handleInputChange} placeholder='הכנס מוצר חדש' />
+            <Select value={selectedOption} onChange={handleSelectChange} placeholder='בחר קטגוריה' >
                 {
-                    categories.map( ( category ) => <Option value={ category.key }>{ category.key }</Option> )
+                    categories.map((category) =>
+                        <Option key={category.key} value={category.key}>{category.key}</Option>)
                 }
             </Select>
-            <Button onClick={ submit }>הוסף</Button>
+            <Button onClick={submit}>הוסף</Button>
         </div>
     );
 };
