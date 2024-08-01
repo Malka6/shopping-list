@@ -13,8 +13,8 @@ export const ShoppingList = () => {
         <div className='shopping-list'>
             <p>יש לאסוף מוצרים אלו במחלקות המתאימות</p>
             <div className='categories'>
-                {Object.entries(shoppingList).map(([ category, products ]) => {
-                    return <Category key={category} category={category} products={products} />
+                {Object.keys(shoppingList).sort().map((category) => {
+                    return <Category key={category} category={category} products={shoppingList[ category ]} />;
                 })}
             </div>
         </div>
